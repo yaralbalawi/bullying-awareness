@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>معًا ضد التنمر</title>
+<meta name="description" content="صفحة توعوية للتعريف بالتنمر وسبل الوقاية منه، وكيفية دعم من يتعرضون له.">
+<style>
+  :root {
+    --white: #ffffff;
+    --blush: #fff5f9;
+    --pink-100: #fde8f0;
+    --pink-200: #f9d0e1;
+    --pink-400: #e9a3c0;
+    --pink-600: #b95d86;
+    --ink: #5a3b4c;
+    --muted: #8d6f7f;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Tajawal", "Segoe UI", Tahoma, Arial, sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 2;
+    font-size: 1.05rem;
+  }
+  a { color: var(--pink-600); }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* الترويسة */
+  header.site { border-bottom: 1px solid var(--pink-200); background: var(--white); position: sticky; top: 0; z-index: 10; }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; padding-bottom: 16px; flex-wrap: wrap; }
+  .logo { font-weight: 700; text-decoration: none; color: var(--pink-600); letter-spacing: .3px; }
+  nav ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; flex-wrap: wrap; }
+  nav a { text-decoration: none; color: var(--muted); font-size: .95rem; padding-bottom: 2px; border-bottom: 1px solid transparent; }
+  nav a:hover { color: var(--pink-600); border-bottom-color: var(--pink-400); }
+
+  /* المقدمة */
+  .hero { background: var(--blush); padding: 110px 0 100px; text-align: center; }
+  .hero h1 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 700; margin: 0 0 18px; line-height: 1.5; color: var(--pink-600); }
+  .hero p { font-size: 1.15rem; max-width: 600px; margin: 0 auto 36px; color: var(--ink); }
+  .btn {
+    display: inline-block; padding: 12px 30px; border-radius: 999px;
+    font-family: inherit; font-size: 1rem; text-decoration: none; cursor: pointer;
+    border: 1px solid var(--pink-600); background: var(--pink-600); color: var(--white);
+    transition: background .2s ease, color .2s ease;
+    margin: 4px;
+  }
+  .btn:hover { background: var(--white); color: var(--pink-600); }
+  .btn.ghost { background: transparent; color: var(--pink-600); }
+  .btn.ghost:hover { background: var(--pink-600); color: var(--white); }
+
+  /* الأقسام */
+  section { padding: 84px 0; }
+  section.tint { background: var(--blush); }
+  .eyebrow { display: block; font-size: .85rem; letter-spacing: 1px; color: var(--pink-400); margin-bottom: 4px; }
+  h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; margin: 0 0 12px; color: var(--pink-600); }
+  .lead { color: var(--muted); max-width: 640px; margin: 0 0 44px; font-size: 1.1rem; }
+
+  /* قوائم تعريفية بسيطة */
+  .rows { border-top: 1px solid var(--pink-200); }
+  .row { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--pink-200); }
+  .row h3 { margin: 0; font-size: 1.1rem; color: var(--pink-600); font-weight: 700; }
+  .row p { margin: 0; color: var(--muted); }
+  @media (max-width: 600px) { .row { grid-template-columns: 1fr; gap: 4px; } }
+
+  /* عبارات الدعم */
+  .quotes { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+  .quotes div { border-top: 2px solid var(--pink-400); padding-top: 14px; }
+  .quotes strong { display: block; color: var(--pink-600); font-size: 1.15rem; margin-bottom: 2px; }
+  .quotes span { color: var(--muted); font-size: .98rem; }
+
+  /* علامات */
+  .two-col { display: grid; gap: 48px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .two-col h3 { font-size: 1.1rem; color: var(--pink-600); margin: 0 0 12px; }
+  ul.dash { list-style: none; padding: 0; margin: 0; }
+  ul.dash li { padding: 8px 28px 8px 0; position: relative; border-bottom: 1px solid var(--pink-100); }
+  ul.dash li::before { content: ""; position: absolute; right: 0; top: 23px; width: 16px; height: 1px; background: var(--pink-400); }
+
+  /* التبويبات */
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; border-bottom: 1px solid var(--pink-200); }
+  .tab {
+    padding: 10px 18px; border: 0; background: transparent; color: var(--muted);
+    font-family: inherit; font-size: 1rem; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .tab:hover { color: var(--pink-600); }
+  .tab[aria-selected="true"] { color: var(--pink-600); border-bottom-color: var(--pink-600); font-weight: 700; }
+  .panel[hidden] { display: none; }
+  .panel ol { margin: 0; padding-right: 22px; }
+  .panel li { margin-bottom: 10px; }
+  .panel li::marker { color: var(--pink-400); }
+
+  /* الاختبار */
+  .quiz { border: 1px solid var(--pink-200); border-radius: 12px; padding: 32px; background: var(--white); }
+  .quiz-q { font-weight: 700; margin-bottom: 18px; font-size: 1.1rem; }
+  .opt {
+    display: block; width: 100%; text-align: right; padding: 12px 18px; margin-bottom: 10px;
+    border-radius: 8px; border: 1px solid var(--pink-200); background: var(--white); cursor: pointer;
+    font-size: 1rem; color: var(--ink); font-family: inherit; transition: border-color .2s ease, background .2s ease;
+  }
+  .opt:hover:not(:disabled) { border-color: var(--pink-400); background: var(--blush); }
+  .opt.correct { border-color: var(--pink-600); background: var(--pink-100); }
+  .opt.wrong { border-color: var(--pink-200); background: var(--white); color: var(--muted); text-decoration: line-through; }
+  .feedback { margin: 14px 0; min-height: 1.8em; color: var(--pink-600); }
+
+  /* المساعدة */
+  .help { background: var(--pink-100); border-radius: 12px; padding: 44px 40px; }
+  .help h2 { margin-bottom: 14px; }
+  .help p { margin: 0 0 12px; }
+  .help ul { margin: 0 0 16px; padding-right: 20px; }
+  .help .ph { color: var(--pink-600); border-bottom: 1px dashed var(--pink-400); }
+
+  footer { padding: 40px 0; text-align: center; color: var(--muted); font-size: .92rem; border-top: 1px solid var(--pink-200); }
+
+  :focus-visible { outline: 2px solid var(--pink-600); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top">معًا ضد التنمر</a>
+    <nav aria-label="القائمة الرئيسية">
+      <ul>
+        <li><a href="#what">مفهوم التنمر</a></li>
+        <li><a href="#signs">العلامات</a></li>
+        <li><a href="#act">سبل التصرف</a></li>
+        <li><a href="#quiz">اختبر معرفتك</a></li>
+        <li><a href="#help">طلب العون</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- المقدمة -->
+  <div class="hero">
+    <div class="wrap">
+      <h1>لستَ وحدك، ونحن إلى جانبك</h1>
+      <p>التنمر جرحٌ لا يراه الجميع، غير أنّ الكلمة الطيبة والموقف الشجاع قادران على شفائه. تعرّف إلى حقيقته، وكن سندًا لمن يحتاج إليك.</p>
+      <p>البندري أبوشامة<br> المتوسطة الثلاثون </p> 
+      <a class="btn" href="#what">ابدأ القراءة</a>
+      <a class="btn ghost" href="#help">اطلب العون</a>
+    </div>
+  </div>
+
+  <!-- مفهوم التنمر -->
+  <section id="what">
+    <div class="wrap">
+      <span class="eyebrow">المفهوم</span>
+      <h2>ما التنمر؟</h2>
+      <p class="lead">التنمر سلوكٌ عدائي متكرر، يقصد به صاحبه إيذاء غيره أو ترهيبه أو إخضاعه، مستندًا إلى تفوقٍ في القوة أو العدد أو المكانة. وهو بذلك يفترق عن الخلاف العابر الذي يقع بين نِدّين.</p>
+      <div class="rows">
+        <div class="row">
+          <h3>التنمر الجسدي</h3>
+          <p>كل اعتداء على الجسد أو الممتلكات، كالضرب والدفع وإتلاف الأغراض.</p>
+        </div>
+        <div class="row">
+          <h3>التنمر اللفظي</h3>
+          <p>الإهانة والتهديد والسخرية وإطلاق الألقاب الجارحة.</p>
+        </div>
+        <div class="row">
+          <h3>التنمر الاجتماعي</h3>
+          <p>ترويج الشائعات، والإقصاء المتعمّد من الجماعة، وتأليب الأصدقاء على شخصٍ بعينه.</p>
+        </div>
+        <div class="row">
+          <h3>التنمر الإلكتروني</h3>
+          <p>الرسائل المسيئة، وانتحال الحسابات، ونشر الصور المحرجة عبر الشبكة.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- كلمات دعم -->
+  <section class="tint" aria-labelledby="support">
+    <div class="wrap">
+      <span class="eyebrow">دعم</span>
+      <h2 id="support">كلماتٌ تُقال لمن يتألم</h2>
+      <p class="lead">إن كنتَ تمرّ بهذه التجربة، فليكن في قلبك ما يأتي.</p>
+      <div class="quotes">
+        <div><strong>لستَ المُلام</strong><span>لا يستحق أحدٌ أن يُؤذى.</span></div>
+        <div><strong>لك قيمتك</strong><span>كلام الآخرين لا يحدّد قدرك.</span></div>
+        <div><strong>البوح بداية الحل</strong><span>حدّث من تثق به ولا تحمل العبء وحدك.</span></div>
+        <div><strong>طلب العون شجاعة</strong><span>فهو دليل قوةٍ لا ضعف.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- العلامات -->
+  <section id="signs">
+    <div class="wrap">
+      <span class="eyebrow">الانتباه</span>
+      <h2>علامات تستدعي الانتباه</h2>
+      <p class="lead">كثيرون يكتمون ما يعانونه، فالتغيّرات في السلوك أصدق من الكلام.</p>
+      <div class="two-col">
+        <div>
+          <h3>قد يبدو على من يتعرض للتنمر</h3>
+          <ul class="dash">
+            <li>التهرّب من المدرسة أو من أماكن بعينها</li>
+            <li>إصاباتٌ غير مفسَّرة أو فقدان متكرر للأغراض</li>
+            <li>حزنٌ وقلقٌ وانطواءٌ على غير عادته</li>
+            <li>اضطراب النوم وتبدّل الشهية</li>
+            <li>انقطاعٌ مفاجئ عن الأصدقاء</li>
+            <li>ضيقٌ ظاهر بعد استخدام الهاتف أو الإنترنت</li>
+          </ul>
+        </div>
+        <div>
+          <h3>وقد يبدو على من يمارس التنمر</h3>
+          <ul class="dash">
+            <li>العدوانية والانخراط في المشاجرات</li>
+            <li>مصاحبة من يتنمرون على غيرهم</li>
+            <li>إلقاء اللوم على الآخرين في أخطائه</li>
+            <li>الإفراط في طلب المكانة والشهرة</li>
+            <li>حاجةٌ إلى من يعلّمه التعبير عن مشاعره بطريقة سليمة</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- سبل التصرف -->
+  <section id="act" class="tint">
+    <div class="wrap">
+      <span class="eyebrow">العمل</span>
+      <h2>كيف أتصرف؟</h2>
+      <p class="lead">اختر موقعك لتطّلع على الخطوات الملائمة.</p>
+
+      <div class="tabs" role="tablist" aria-label="الأدوار">
+        <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">من يتعرض للتنمر</button>
+        <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false">من يشهد التنمر</button>
+        <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false">الأهل والمعلمون</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
+        <ol>
+          <li><strong>اعلم أنك لست المخطئ.</strong> فما من أحدٍ يستحق الإيذاء.</li>
+          <li><strong>أخبر من تثق به:</strong> أحد والديك، أو معلمًا، أو المرشد الطلابي.</li>
+          <li>حافظ على هدوئك وابتعد متى كان ذلك آمنًا، وكن قريبًا من أصدقائك أو من الكبار.</li>
+          <li>احتفظ بالأدلة، كالرسائل ولقطات الشاشة، ودوّن ما جرى ومتى وأين.</li>
+          <li>احظر من يؤذيك عبر الإنترنت وبلّغ عنه.</li>
+          <li>واصل الحديث حتى تجد من يعينك.</li>
+        </ol>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+        <ol>
+          <li><strong>لا تشارك ولا تضحك.</strong> فالصمت والضحك يشجّعان المتنمّر.</li>
+          <li>إن أمكنك ذلك بأمان، فقل بحزم: «هذا لا يصحّ، كفى».</li>
+          <li>اقترب من المتضرر بعد الموقف، وأشعره بأنه غير منبوذ، وادعه للجلوس معك.</li>
+          <li>أبلغ شخصًا بالغًا موثوقًا. فالتبليغ ليس وشاية، بل نصرةٌ للمظلوم.</li>
+          <li>لا تنشر المحتوى المسيء ولا تعد إرساله، بل بلّغ عنه.</li>
+        </ol>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+        <ol>
+          <li>أصغِ بهدوء، وخذ الأمر على محمل الجد، واشكر الطفل على ثقته بك.</li>
+          <li>طمئنه بأنه غير ملوم، وتجنّب عبارة «تجاهل الأمر» أو تحميله المسؤولية.</li>
+          <li>وثّق ما حدث وتواصل مع المدرسة في أقرب وقت.</li>
+          <li>ربِّ الأبناء على التعاطف وحسن الحوار وآداب استخدام الإنترنت.</li>
+          <li>كونوا قدوةً في اللين والاحترام، فالأبناء يتعلمون بما يرون.</li>
+          <li>ادعموا الطفل المتنمّر كذلك، لفهم دوافعه وتقويم سلوكه.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- الاختبار -->
+  <section id="quiz">
+    <div class="wrap">
+      <span class="eyebrow">تقييم</span>
+      <h2>اختبر معرفتك</h2>
+      <p class="lead">أسئلة موجزة تعينك على ترسيخ ما قرأت.</p>
+      <div class="quiz" aria-live="polite">
+        <div class="quiz-q" id="qText"></div>
+        <div id="qOpts"></div>
+        <div class="feedback" id="qFeedback"></div>
+        <button class="btn" id="qNext" style="display:none">السؤال التالي</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- طلب العون -->
+  <section id="help" class="tint">
+    <div class="wrap">
+      <div class="help">
+        <h2>هل تحتاج إلى عون؟</h2>
+        <p>إن كنتَ أنت، أو أحدٌ تعرفه، يتعرض للتنمر، فبادر اليوم بالحديث إلى أحد هؤلاء:</p>
+        <ul>
+          <li>أحد الوالدين أو أفراد الأسرة</li>
+          <li>المعلم أو المرشد الطلابي أو مدير المدرسة</li>
+        </ul>
+       
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" >  أُعدّت هذه الصفحة سعيًا إلى مجتمعٍ أكثر أمانًا ولطفًا  <br> البندري أبوشامة<br> المتوسطة الثلاثون <br> &middot; <span id="yr"></span></div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // التبويبات
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }));
+
+  // الاختبار
+  const questions = [
+    { q: "أيّ مما يأتي يُعدّ تنمرًا؟",
+      o: ["خلافٌ عابر بين صديقين", "سلوكٌ مؤذٍ متكرر يقوم على تفاوت في القوة", "الخسارة في لعبة"], a: 1,
+      f: "التنمر سلوك متكرر يقوم على اختلال ميزان القوة بين الطرفين." },
+    { q: "رأيتَ زميلًا يتعرض للسخرية. فما الموقف الأجدر؟",
+      o: ["أضحك كي لا أكون الهدف التالي", "أصوّر الموقف وأنشره", "أساند الزميل وأُبلغ شخصًا بالغًا موثوقًا"], a: 2,
+      f: "المساندة والتبليغ يوقفان الأذى، أما الضحك والنشر فيضاعفانه." },
+    { q: "إخبار شخص بالغ بما يجري من تنمر هو…",
+      o: ["وشاية", "موقفٌ شجاع ونافع", "لا جدوى منه"], a: 1,
+      f: "غاية التبليغ حفظ السلامة، لا الإيقاع بأحد." },
+    { q: "وصلتك رسالة مسيئة عن أحد زملائك. فماذا تفعل؟",
+      o: ["أرسلها إلى الآخرين", "أحذفها وألزم الصمت", "أمتنع عن نشرها وأبلّغ عنها"], a: 2,
+      f: "لا تُعد إرسالها، وبلّغ عنها شخصًا بالغًا موثوقًا أو إدارة المنصة." }
+  ];
+  let i = 0, score = 0, answered = false;
+  const qText = document.getElementById('qText'),
+        qOpts = document.getElementById('qOpts'),
+        qFeedback = document.getElementById('qFeedback'),
+        qNext = document.getElementById('qNext');
+
+  function render() {
+    answered = false;
+    qNext.onclick = next;
+    const cur = questions[i];
+    qText.textContent = `السؤال ${i + 1} من ${questions.length}: ${cur.q}`;
+    qOpts.innerHTML = '';
+    qFeedback.textContent = '';
+    qNext.style.display = 'none';
+    cur.o.forEach((text, idx) => {
+      const b = document.createElement('button');
+      b.className = 'opt';
+      b.textContent = text;
+      b.addEventListener('click', () => choose(idx, b));
+      qOpts.appendChild(b);
+    });
+  }
+  function choose(idx, btn) {
+    if (answered) return;
+    answered = true;
+    const cur = questions[i];
+    const buttons = qOpts.querySelectorAll('.opt');
+    buttons.forEach(b => b.disabled = true);
+    if (idx === cur.a) { btn.classList.add('correct'); score++; qFeedback.textContent = "أحسنت، إجابتك صحيحة. " + cur.f; }
+    else { btn.classList.add('wrong'); buttons[cur.a].classList.add('correct'); qFeedback.textContent = "الإجابة غير صحيحة. " + cur.f; }
+    qNext.textContent = i === questions.length - 1 ? 'عرض النتيجة' : 'السؤال التالي';
+    qNext.style.display = 'inline-block';
+  }
+  function next() {
+    if (i < questions.length - 1) { i++; render(); }
+    else {
+      qText.textContent = `نتيجتك: ${score} من ${questions.length}`;
+      qOpts.innerHTML = '';
+      qFeedback.textContent = score === questions.length ? "أحسنت، أنت جديرٌ بأن تكون سندًا لغيرك." : "محاولة طيبة. راجع الأقسام أعلاه ثم أعد المحاولة.";
+      qNext.textContent = 'إعادة الاختبار';
+      qNext.onclick = () => { i = 0; score = 0; render(); };
+    }
+  }
+  render();
+</script>
+</body>
+</html>

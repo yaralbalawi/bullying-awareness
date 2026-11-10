@@ -66,11 +66,40 @@
   .row p { margin: 0; color: var(--muted); }
   @media (max-width: 600px) { .row { grid-template-columns: 1fr; gap: 4px; } }
 
-  /* عبارات الدعم */
-  .quotes { display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
-  .quotes div { border-top: 2px solid var(--pink-400); padding-top: 14px; }
-  .quotes strong { display: block; color: var(--pink-600); font-size: 1.15rem; margin-bottom: 2px; }
-  .quotes span { color: var(--muted); font-size: .98rem; }
+  /* كلمات التشجيع */
+  section.cheer { background: var(--pink-100); text-align: center; }
+  section.cheer .lead { margin-inline: auto; margin-bottom: 32px; }
+  .cheer-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 32px; }
+  .chip {
+    font-family: inherit; font-size: 1rem; cursor: pointer;
+    padding: 10px 22px; border-radius: 999px;
+    border: 1px solid var(--pink-400); background: var(--white); color: var(--pink-600);
+    transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+  }
+  .chip:hover { transform: translateY(-3px); background: var(--blush); box-shadow: 0 6px 14px rgba(185,93,134,.15); }
+  .chip[aria-pressed="true"] { background: var(--pink-600); border-color: var(--pink-600); color: var(--white); }
+  .cheer-card {
+    background: var(--white); border: 1px solid var(--pink-200); border-radius: 28px;
+    max-width: 640px; margin: 0 auto; padding: 36px 32px 28px;
+    box-shadow: 0 10px 30px rgba(185,93,134,.10);
+  }
+  .sky { position: relative; height: 64px; margin: -8px -8px 10px; overflow: hidden; }
+  .sky svg { position: absolute; top: 12px; left: 50%; width: 130px; height: 44px; margin-left: -65px; overflow: visible; }
+  .sky svg .tail { fill: url(#tailGrad); }
+  .sky svg .head { fill: var(--pink-400); }
+  .sky.shoot svg { animation: shoot .9s cubic-bezier(.2,.7,.3,1); }
+  .twinkle { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: var(--pink-200); animation: twinkle 2.6s ease-in-out infinite; }
+  .twinkle.t1 { top: 14px; right: 18%; }
+  .twinkle.t2 { top: 38px; right: 32%; animation-delay: .8s; width: 4px; height: 4px; }
+  .twinkle.t3 { top: 20px; left: 16%; animation-delay: 1.5s; }
+  .twinkle.t4 { top: 46px; left: 30%; animation-delay: .4s; width: 3px; height: 3px; }
+  .cheer-card p { margin: 0 auto 14px; font-size: 1.2rem; line-height: 2; color: var(--ink); min-height: 4em; }
+  .cheer-card p.fade { animation: fadeUp .45s ease; }
+  .cheer-hint { font-size: .88rem; color: var(--muted); }
+  @keyframes shoot { 0% { transform: translate(-220px, -26px) rotate(-8deg); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(0, 0) rotate(0); opacity: 1; } }
+  @keyframes twinkle { 0%, 100% { opacity: .25; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.3); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .sky.shoot svg, .twinkle, .cheer-card p.fade { animation: none; } }
 
   /* علامات */
   .two-col { display: grid; gap: 48px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
@@ -125,6 +154,7 @@
     <a class="logo" href="#top">معًا ضد التنمر</a>
     <nav aria-label="القائمة الرئيسية">
       <ul>
+        <li><a href="#cheer">كلمات تشجيع</a></li>
         <li><a href="#what">مفهوم التنمر</a></li>
         <li><a href="#signs">العلامات</a></li>
         <li><a href="#act">سبل التصرف</a></li>
@@ -139,13 +169,55 @@
   <!-- المقدمة -->
   <div class="hero">
     <div class="wrap">
-      <h1>لستَ وحدك، ونحن إلى جانبك</h1>
+      <h1>المتوسطة الثلاثون \ قسم التربية الفكرية</h1>
+      <h2 style="color: #e78db2; font-size: 28px;">مبادرة بيئة مدرسية أمنة</h2>
+       <p>اليوم العالمي لمكافحة التنمر في المدارس<br>الخامس من نوفمبر</p>
+
+      <h1>لستَ وحدك، نحن إلى جانبك</h1>
       <p>التنمر جرحٌ لا يراه الجميع، غير أنّ الكلمة الطيبة والموقف الشجاع قادران على شفائه. تعرّف إلى حقيقته، وكن سندًا لمن يحتاج إليك.</p>
-      <p>البندري أبوشامة<br> المتوسطة الثلاثون </p> 
+      <p>الموجهة الطلابية : البندري أبوشامة<br> مديرة المدرسة : حنان عليان البلوي</p> 
       <a class="btn" href="#what">ابدأ القراءة</a>
       <a class="btn ghost" href="#help">اطلب العون</a>
     </div>
   </div>
+
+  <!-- كلمات تشجيع -->
+  <section id="cheer" class="cheer">
+    <div class="wrap">
+      <span class="eyebrow">تشجيع</span>
+      <h2>ماذا يدور في قلبك اليوم؟</h2>
+      <p class="lead">اختر ما تشعر به، وسيعبر لك نجمٌ بكلمةٍ طيبة تُطمئن قلبك.</p>
+
+      <div class="cheer-buttons" role="group" aria-label="اختر شعورك">
+        <button type="button" class="chip" data-k="sad" aria-pressed="false">أشعر بالحزن</button>
+        <button type="button" class="chip" data-k="lonely" aria-pressed="false">أشعر بالوحدة</button>
+        <button type="button" class="chip" data-k="afraid" aria-pressed="false">أخاف من المدرسة</button>
+        <button type="button" class="chip" data-k="strong" aria-pressed="false">أحتاج إلى قوة</button>
+        <button type="button" class="chip" data-k="worth" aria-pressed="false">ذكّرني بقيمتي</button>
+        <button type="button" class="chip" data-k="talk" aria-pressed="false">أريد أن أتكلم</button>
+        <button type="button" class="chip" data-k="friend" aria-pressed="false">أريد مساندة صديق</button>
+        <button type="button" class="chip" data-k="kind" aria-pressed="false">كلمة لطيفة</button>
+      </div>
+
+      <div class="cheer-card" aria-live="polite">
+        <div class="sky" id="cheerSky" aria-hidden="true">
+          <span class="twinkle t1"></span><span class="twinkle t2"></span><span class="twinkle t3"></span><span class="twinkle t4"></span>
+          <svg viewBox="0 0 120 40">
+            <defs>
+              <linearGradient id="tailGrad" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#e9a3c0" stop-opacity="0"/>
+                <stop offset="1" stop-color="#e9a3c0" stop-opacity=".9"/>
+              </linearGradient>
+            </defs>
+            <path class="tail" d="M0 20 L88 17 L88 23 Z"/>
+            <polygon class="head" points="100,6 103.41,15.31 113.31,15.67 105.52,21.79 108.23,31.33 100,25.8 91.77,31.33 94.48,21.79 86.69,15.67 96.59,15.31"/>
+          </svg>
+        </div>
+        <p id="cheerText">اضغط على أحد الأزرار أعلاه، وسيعبر نجمٌ حاملًا إليك رسالة طيبة.</p>
+        <span class="cheer-hint">اضغط على الزر نفسه مرة أخرى لتحصل على كلمة جديدة</span>
+      </div>
+    </div>
+  </section>
 
   <!-- مفهوم التنمر -->
   <section id="what">
@@ -174,23 +246,8 @@
     </div>
   </section>
 
-  <!-- كلمات دعم -->
-  <section class="tint" aria-labelledby="support">
-    <div class="wrap">
-      <span class="eyebrow">دعم</span>
-      <h2 id="support">كلماتٌ تُقال لمن يتألم</h2>
-      <p class="lead">إن كنتَ تمرّ بهذه التجربة، فليكن في قلبك ما يأتي.</p>
-      <div class="quotes">
-        <div><strong>لستَ المُلام</strong><span>لا يستحق أحدٌ أن يُؤذى.</span></div>
-        <div><strong>لك قيمتك</strong><span>كلام الآخرين لا يحدّد قدرك.</span></div>
-        <div><strong>البوح بداية الحل</strong><span>حدّث من تثق به ولا تحمل العبء وحدك.</span></div>
-        <div><strong>طلب العون شجاعة</strong><span>فهو دليل قوةٍ لا ضعف.</span></div>
-      </div>
-    </div>
-  </section>
-
   <!-- العلامات -->
-  <section id="signs">
+  <section id="signs" class="tint">
     <div class="wrap">
       <span class="eyebrow">الانتباه</span>
       <h2>علامات تستدعي الانتباه</h2>
@@ -222,7 +279,7 @@
   </section>
 
   <!-- سبل التصرف -->
-  <section id="act" class="tint">
+  <section id="act">
     <div class="wrap">
       <span class="eyebrow">العمل</span>
       <h2>كيف أتصرف؟</h2>
@@ -269,7 +326,7 @@
   </section>
 
   <!-- الاختبار -->
-  <section id="quiz">
+  <section id="quiz" class="tint">
     <div class="wrap">
       <span class="eyebrow">تقييم</span>
       <h2>اختبر معرفتك</h2>
@@ -284,7 +341,7 @@
   </section>
 
   <!-- طلب العون -->
-  <section id="help" class="tint">
+  <section id="help">
     <div class="wrap">
       <div class="help">
         <h2>هل تحتاج إلى عون؟</h2>
@@ -292,6 +349,10 @@
         <ul>
           <li>أحد الوالدين أو أفراد الأسرة</li>
           <li>المعلم أو المرشد الطلابي أو مدير المدرسة</li>
+          <li>رقم مساندة الطفل : 116111</li>
+          <li>  رقم الحماية من العنف : 1919 </li>
+
+
         </ul>
        
       </div>
@@ -300,11 +361,71 @@
 </main>
 
 <footer>
-  <div class="wrap" >  أُعدّت هذه الصفحة سعيًا إلى مجتمعٍ أكثر أمانًا ولطفًا  <br> البندري أبوشامة<br> المتوسطة الثلاثون <br> &middot; <span id="yr"></span></div>
+  <div class="wrap" >  أُعدّت هذه الصفحة سعيًا إلى مجتمعٍ أكثر أمانًا ولطفًا  <br> الموجهة الطلابية : البندري أبوشامة<br> مديرة المدرسة : حنان عليان البلوي
+<br> &middot; <span id="yr"></span></div>
 </footer>
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // كلمات التشجيع
+  const cheers = {
+    sad: [
+      "حزنك لا يعني أنك ضعيف، بل يعني أن قلبك حيّ. خذ نفسًا عميقًا، فهذا اليوم الصعب سيمرّ، وأنت أقوى مما تظن.",
+      "من حقك أن تحزن، ومن حقك أيضًا أن تجد من يحتضن حزنك. لا تحمله وحدك، فثمة من يحبك ويسمعك.",
+      "حتى الغيوم الكثيفة تنجلي، وتعود الشمس أجمل مما كانت. وكذلك أيامك، سيأتيها الفرح."
+    ],
+    lonely: [
+      "لستَ وحدك كما يخيّل إليك. حولك قلوب كثيرة تتمنى أن تقترب منك، فامدد يدك إليها.",
+      "الوحدة شعورٌ عابر وليست قدرًا دائمًا. وفي مدرستك من يودّ أن يكون صديقك، وربما ينتظر منك ابتسامة.",
+      "وجودك مهم، وأثرك أكبر مما تتخيل. ونحن نؤمن بأن لك مكانًا في كل قلبٍ يعرفك."
+    ],
+    afraid: [
+      "خوفك مفهوم، وشجاعتك أنك ما زلت تحاول. أخبر المرشدة الطلابية أو أحد الكبار الذين تثق بهم، فهم هنا ليحموك.",
+      "لستَ مضطرًا إلى مواجهة كل شيء وحدك. خطوة صغيرة اليوم، وكلمة صادقة لشخص موثوق، تصنعان فرقًا كبيرًا.",
+      "مدرستك ينبغي أن تكون مكانًا آمنًا، ومن حقك أن تشعر فيها بالأمان. ونحن جميعًا نعمل على ذلك من أجلك."
+    ],
+    strong: [
+      "القوة ليست أن تصمت على الأذى، بل أن تقول: «كفى»، وتطلب العون. وأنت قادر على ذلك.",
+      "كل نبتةٍ تشقّ طريقها عبر التراب لتبلغ النور، وأنت كذلك. واصل، فالنور قريب.",
+      "أنت أشجع مما تظن، فقد صمدت حتى الآن. وكل يوم تعبره يزيدك صلابةً ونضجًا."
+    ],
+    worth: [
+      "أنت إنسانٌ ثمين، ولا تنتقص من قدرك كلماتُ من لا يعرفك. ومن يعرفك حقًا يرى فيك الخير.",
+      "لك قلبٌ طيب وروحٌ فريدة، وليس في الدنيا من يشبهك. وهذا ما يجعلك غاليًا.",
+      "كلام المتنمّر يكشف عن نفسه لا عنك، أما أنت فأجمل بكثير مما قيل لك."
+    ],
+    talk: [
+      "الحديث إلى من تثق به أول خطوة نحو الراحة. اختر اليوم شخصًا قريبًا وقل له: «أحتاج أن أخبرك بشيء».",
+      "لا تخشَ أن تكون مُزعِجًا، فالذين يحبونك يريدون أن يسمعوك. وبوحك يخفّف العبء عن كتفيك.",
+      "يمكنك أن تبدأ بجملة بسيطة: «أشعر بضيق». وسيتكفّل من يسمعك بالباقي."
+    ],
+    friend: [
+      "مساندتك لصديقك قد تكون الشيء الوحيد الذي يجعل يومه أخفّ. وكلمة طيبة واحدة منك تكفي.",
+      "اجلس بجانبه وقل: «أنا معك». فهذه الجملة الصغيرة تحمل أثرًا عظيمًا.",
+      "وأبلغ شخصًا بالغًا موثوقًا بما يحدث، فالتبليغ ليس وشاية، بل عونٌ ونصرة."
+    ],
+    kind: [
+      "ابتسامتك جميلة ولو لم تُظهرها اليوم، ونحن سعداء بوجودك بيننا.",
+      "أنت تستحق الحب والاحترام في كل يوم. تذكّر هذا كلما احتجت إلى تذكير.",
+      "يومٌ جميل ينتظرك ولو بدا بعيدًا، وكل كلمة طيبة وعناق صادق يقرّبانه."
+    ]
+  };
+  const cheerState = {};
+  const cheerText = document.getElementById('cheerText');
+  const cheerSky = document.getElementById('cheerSky');
+  const chips = document.querySelectorAll('.chip');
+  chips.forEach(chip => chip.addEventListener('click', () => {
+    const k = chip.dataset.k, list = cheers[k];
+    cheerState[k] = (k in cheerState) ? (cheerState[k] + 1) % list.length : Math.floor(Math.random() * list.length);
+    chips.forEach(c => c.setAttribute('aria-pressed', c === chip));
+    cheerText.textContent = list[cheerState[k]];
+    cheerText.classList.remove('fade');
+    cheerSky.classList.remove('shoot');
+    void cheerText.getBoundingClientRect();
+    cheerText.classList.add('fade');
+    cheerSky.classList.add('shoot');
+  }));
 
   // التبويبات
   const tabs = document.querySelectorAll('.tab');
